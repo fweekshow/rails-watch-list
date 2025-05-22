@@ -1,0 +1,13 @@
+<h1 class="page-title">マイ・ムービー・リスト</h1>
+
+<div class="lists-grid">
+  <% @lists.each do |list| %>
+    <div class="list-card">
+      <h2><%= link_to list.name, list_path(list), class: "list-link" %></h2>
+    </div>
+  <% end %>
+</div>
+
+<div class="create-link">
+  <%= link_to "📂 新しいリストを作成", new_list_path, class: "btn-primary" %>
+</div>

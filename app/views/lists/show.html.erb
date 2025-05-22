@@ -1,0 +1,27 @@
+<h1 class="page-title">🎬 「<%= @list.name %>」のブックマーク</h1>
+
+<div class="bookmarks-container">
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="bookmark-card">
+      <div class="bookmark-details">
+        <strong><%= bookmark.movie.title %></strong>
+        <p><%= bookmark.comment %></p>
+      </div>
+      <%= button_to "削除", bookmark_path(bookmark), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn-delete" %>
+    </div>
+  <% end %>
+</div>
+
+<h2 class="form-title">🎴 新しいブックマーク</h2>
+
+<div class="bookmark-form-wrapper">
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie, label: "映画を選ぶ" %>
+    <%= f.input :comment, label: "コメント" %>
+    <%= f.submit "追加する", class: "btn-primary" %>
+  <% end %>
+</div>
+
+<div class="bookmark-links">
+  <%= link_to "⬅ リスト一覧に戻る", lists_path, class: "btn-secondary" %>
+</div>

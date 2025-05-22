@@ -1,0 +1,11 @@
+<h1>「<%= @list.name %>」にブックマークを追加</h1>
+
+<div class="bookmark-form-wrapper">
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie, label: "映画を選ぶ" %>
+    <%= f.input :comment, label: "コメント" %>
+    <%= f.submit "追加する", class: "btn-primary" %>
+  <% end %>
+</div>
+
+<%= link_to "⬅ 戻る", list_path(@list), class: "btn-secondary" %>
