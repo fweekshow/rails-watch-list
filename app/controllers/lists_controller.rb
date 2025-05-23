@@ -14,8 +14,12 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    if params[:list][:image].present?
+      uploaded = Cloudinary::Uploader.upload(params[:list][:image])
+      @list.image = uploaded["public_id"]
+    end
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to @list
     else
       render :new
     end

@@ -1,8 +1,10 @@
 <h1>Create a New List</h1>
 
-<%= simple_form_for @list do |f| %>
+<%= simple_form_for @list, html: { multipart: true } do |f| %>
   <%= f.input :name %>
-  <%= f.submit "Create List" %>
+  <%= f.input :image, as: :file, label: "Upload an image" %>
+  <%= f.submit "Create List", class: "btn btn-primary" %>
 <% end %>
+
 
 <%= link_to "Back to all lists", lists_path %>
